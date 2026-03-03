@@ -63,4 +63,19 @@ public class CabInvoiceGeneratorTest {
         assertEquals(30, summary.totalFare);
         assertEquals(15, summary.averageFare);
     }
+
+    @Test
+    public void givenPremiumRide_ShouldReturnPremiumFare() {
+
+        Ride[] rides = {
+                new Ride(2.0, 5, RideType.PREMIUM)
+        };
+
+        CabInvoiceGenerator generator = new CabInvoiceGenerator();
+        InvoiceSummary summary = generator.calculateFareSummary(rides);
+
+        assertEquals(1, summary.totalRides);
+        assertEquals(40, summary.totalFare);
+        assertEquals(40, summary.averageFare);
+    }
 }

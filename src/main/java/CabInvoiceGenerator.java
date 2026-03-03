@@ -8,10 +8,18 @@ public class CabInvoiceGenerator {
         double fare = (distance * COST_PER_KM) + (time * COST_PER_MINUTE);
         return Math.max(fare, MINIMUM_FARE);
     }
+    public double calculateFare(Ride ride) {
+
+        double fare = (ride.distance * ride.rideType.costPerKm)
+                + (ride.time * ride.rideType.costPerMinute);
+
+        return Math.max(fare, ride.rideType.minimumFare);
+    }
+
     public double calculateFare(Ride[] rides) {
         double totalFare = 0;
         for (Ride ride : rides) {
-            totalFare += calculateFare(ride.distance, ride.time);
+            totalFare += calculateFare(ride);
         }
         return totalFare;
     }
