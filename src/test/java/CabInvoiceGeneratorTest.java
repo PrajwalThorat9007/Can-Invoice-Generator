@@ -16,4 +16,15 @@ public class CabInvoiceGeneratorTest {
         double fare = generator.calculateFare(0.1, 1);
         assertEquals(5, fare);
     }
+
+    @Test
+    public void givenMultipleRides_ShouldReturnAggregateFare() {
+        CabInvoiceGenerator generator = new CabInvoiceGenerator();
+        Ride[] rides = {
+                new Ride(2.0, 5),
+                new Ride(0.1, 1)
+        };
+        double totalFare = generator.calculateFare(rides);
+        assertEquals(30, totalFare);
+    }
 }
